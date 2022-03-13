@@ -6,10 +6,13 @@ import java.math.BigDecimal;
 
 public class DescontoParaOrcamentoComMaisDeCincoItens extends AbstractDesconto {
 
-    public BigDecimal calcular(Orcamento orcamento) {
-        if (orcamento.getQuantidadeItens() > 5)
-            return orcamento.getValor().multiply(new BigDecimal("0.1"));
+    @Override
+    public BigDecimal efetuarCalculo(Orcamento orcamento) {
+        return orcamento.getValor().multiply(new BigDecimal("0.1"));
+    }
 
-        return proximo.calcular(orcamento);
+    @Override
+    public boolean deveAplicar(Orcamento orcamento) {
+        return orcamento.getQuantidadeItens() > 5;
     }
 }

@@ -6,12 +6,18 @@ import java.math.BigDecimal;
 
 public abstract class AbstractDesconto {
 
-    protected AbstractDesconto proximo;
+    private AbstractDesconto proximo;
 
     public AbstractDesconto setProximo(AbstractDesconto proximo) {
         this.proximo= proximo;
         return proximo;
     }
 
-    public abstract BigDecimal calcular(Orcamento orcamento);
+    public BigDecimal calcular(Orcamento orcamento) {
+        return deveAplicar(orcamento) ? efetuarCalculo(orcamento) : proximo.calcular(orcamento);
+    }
+
+    protected abstract BigDecimal efetuarCalculo(Orcamento orcamento);
+
+    protected abstract boolean deveAplicar(Orcamento orcamento);
 }
