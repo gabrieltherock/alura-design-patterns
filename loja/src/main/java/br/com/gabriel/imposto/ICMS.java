@@ -1,4 +1,6 @@
-package br.com.gabriel;
+package br.com.gabriel.imposto;
+
+import br.com.gabriel.orcamento.Orcamento;
 
 import java.math.BigDecimal;
 
